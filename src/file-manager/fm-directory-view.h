@@ -30,6 +30,7 @@
 
 #include <gtk/gtk.h>
 #include <gio/gio.h>
+#include <glib.h>
 
 #include <eel/eel-background.h>
 
@@ -56,6 +57,7 @@ typedef struct FMDirectoryViewClass FMDirectoryViewClass;
 #define FM_DIRECTORY_VIEW_GET_CLASS(obj) \
   (G_TYPE_INSTANCE_GET_CLASS ((obj), FM_TYPE_DIRECTORY_VIEW, FMDirectoryViewClass))
 
+G_DEFINE_AUTOPTR_CLEANUP_FUNC(FMDirectoryView, g_object_unref);
 typedef struct FMDirectoryViewDetails FMDirectoryViewDetails;
 
 struct FMDirectoryView

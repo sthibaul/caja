@@ -1,6 +1,6 @@
 /* vi: set sw=4 ts=4 wrap ai: */
 /*
- * fm-group-view.h: This file is part of ____
+ * fm-widget-view.h: This file is part of ____
  *
  * Copyright (C) 2019 yetist <yetist@yetibook>
  *
@@ -20,21 +20,21 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  * */
 
-#ifndef __FM_GROUP_VIEW_H__
-#define __FM_GROUP_VIEW_H__  1
+#ifndef __FM_WIDGET_VIEW_H__
+#define __FM_WIDGET_VIEW_H__  1
 
 #include "fm-directory-view.h"
 
 G_BEGIN_DECLS
 
-#define FM_GROUP_VIEW_ID "OAFIID:Caja_File_Manager_Group_View"
-#define FM_TYPE_GROUP_VIEW              (fm_group_view_get_type ())
-G_DECLARE_FINAL_TYPE (FMGroupView, fm_group_view, FM, GROUP_VIEW, FMDirectoryView)
+#define FM_WIDGET_VIEW_ID "OAFIID:Caja_File_Manager_Widget_View"
+#define FM_TYPE_WIDGET_VIEW              (fm_widget_view_get_type ())
+G_DECLARE_FINAL_TYPE (FMWidgetView, fm_widget_view, FM, WIDGET_VIEW, FMDirectoryView)
 
 
-FMGroupView* fm_group_view_new      (void);
-void         fm_group_view_register (void);
+FMWidgetView* fm_widget_view_new      (void);
+void          fm_widget_view_register (void);
 
 G_END_DECLS
 
-#endif /* __FM_GROUP_VIEW_H__ */
+#endif /* __FM_WIDGET_VIEW_H__ */

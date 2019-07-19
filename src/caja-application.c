@@ -67,7 +67,7 @@
 #include "file-manager/fm-icon-view.h"
 #include "file-manager/fm-list-view.h"
 #include "file-manager/fm-tree-view.h"
-#include "file-manager/fm-group-view.h"
+#include "file-manager/fm-widget-view.h"
 
 #include "caja-application.h"
 #include "caja-information-panel.h"

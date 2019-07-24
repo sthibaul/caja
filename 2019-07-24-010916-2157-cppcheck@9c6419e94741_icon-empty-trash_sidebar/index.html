@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cppcheck - HTML report - caja</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+    <script language="javascript">
+      function getStyle(el,styleProp) {
+        if (el.currentStyle)
+          var y = el.currentStyle[styleProp];
+        else if (window.getComputedStyle)
+          var y = document.defaultView.getComputedStyle(el,null).getPropertyValue(styleProp);
+        return y;
+      }
+      function toggle() {
+        var el = this.expandable_content;
+        var mark = this.expandable_marker;
+        if (el.style.display == "block") {
+          el.style.display = "none";
+          mark.innerHTML = "[+]";
+        } else {
+          el.style.display = "block";
+          mark.innerHTML = "[-]";
+        }
+      }
+      function init_expandables() {
+        var elts = document.getElementsByClassName("expandable");
+        for (var i = 0; i < elts.length; i++) {
+          var el = elts[i];
+          var clickable = el.getElementsByTagName("span")[0];
+          var marker = clickable.getElementsByClassName("marker")[0];
+          var content = el.getElementsByClassName("content")[0];
+          var width = clickable.clientWidth - parseInt(getStyle(content, "padding-left")) - parseInt(getStyle(content, "padding-right"));
+          content.style.width = width + "px";
+          clickable.expandable_content = content;
+          clickable.expandable_marker = marker;
+          clickable.onclick = toggle;
+        }
+      }
+      function set_class_display(c, st) {
+        var elements = document.querySelectorAll('.' + c),
+            len = elements.length;
+        for (i = 0; i < len; i++) {
+            elements[i].style.display = st;
+        }
+      }
+      function toggle_class_visibility(id) {
+        var box = document.getElementById(id);
+        set_class_display(id, box.checked ? '' : 'none');
+      }
+      function toggle_all(){
+        var elts = document.getElementsByTagName("input");
+        for (var i = 1; i < elts.length; i++) {           
+          var el = elts[i];
+          el.checked ? el.checked=false : el.checked=true;
+          toggle_class_visibility(el.id);        
+        }            
+      }
+
+    </script>
+  </head>
+  <body onload="init_expandables()">
+      <div id="header">
+        <h1>Cppcheck report - caja:  </h1>
+      </div>
+      <div id="menu_index">
+       <p id="filename"><a href="index.html">Defect summary;</a> </p>
+       <table>           <tr><th>Show</th><th>#</th><th>Defect ID</th></tr><label><input type="checkbox" onclick="toggle_all()" checked/> Toggle all</label>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='varFuncNullUB' name='varFuncNullUB' checked></td><td>41</td><td>varFuncNullUB</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='unusedStructMember' name='unusedStructMember' checked></td><td>13</td><td>unusedStructMember</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='shadowVar' name='shadowVar' checked></td><td>11</td><td>shadowVar</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='clarifyCalculation' name='clarifyCalculation' checked></td><td>10</td><td>clarifyCalculation</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='unreadVariable' name='unreadVariable' checked></td><td>8</td><td>unreadVariable</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='redundantAssignment' name='redundantAssignment' checked></td><td>5</td><td>redundantAssignment</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='selfAssignment' name='selfAssignment' checked></td><td>5</td><td>selfAssignment</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='shadowFunction' name='shadowFunction' checked></td><td>4</td><td>shadowFunction</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='knownConditionTrueFalse' name='knownConditionTrueFalse' checked></td><td>3</td><td>knownConditionTrueFalse</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='nullPointerRedundantCheck' name='nullPointerRedundantCheck' checked></td><td>3</td><td>nullPointerRedundantCheck</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='duplicateBreak' name='duplicateBreak' checked></td><td>2</td><td>duplicateBreak</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='unusedAllocatedMemory' name='unusedAllocatedMemory' checked></td><td>2</td><td>unusedAllocatedMemory</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='variableScope' name='variableScope' checked></td><td>2</td><td>variableScope</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='ConfigurationNotChecked' name='ConfigurationNotChecked' checked></td><td>1</td><td>ConfigurationNotChecked</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='ctunullpointer' name='ctunullpointer' checked></td><td>1</td><td>ctunullpointer</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='duplicateConditionalAssign' name='duplicateConditionalAssign' checked></td><td>1</td><td>duplicateConditionalAssign</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='missingInclude' name='missingInclude' checked></td><td>1</td><td>missingInclude</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='redundantCondition' name='redundantCondition' checked></td><td>1</td><td>redundantCondition</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='unusedVariable' name='unusedVariable' checked></td><td>1</td><td>unusedVariable</td></tr>            <tr><td><input type='checkbox' onclick='toggle_class_visibility(this.id)' id='uselessAssignmentPtrArg' name='uselessAssignmentPtrArg' checked></td><td>1</td><td>uselessAssignmentPtrArg</td></tr>           <tr><td></td><td>116</td><td>total</td></tr>       </table>       <a href="stats.html">Statistics</a></p>
+      </div>
+      <div id="content_index">
+       <table>
+       <tr><th>Line</th><th>Id</th><th>CWE</th><th>Severity</th><th>Message</th></tr>
+       <tr><td colspan='5'><a href='34.html'></a></td></tr>
+         <tr class="missingInclude"><td></td><td>missingInclude</td><td></td><td>information</td><td>Cppcheck cannot find all the include files (use --check-config for details)</td></tr>
+       <tr><td colspan='5'><a href='0.html'>eel/eel-editable-label.c</a></td></tr>
+       <tr class="duplicateBreak"><td><a href="0.html#line-2786">2786</a></td><td>duplicateBreak</td><td><a href='https://cwe.mitre.org/data/definitions/561.html'>561</a></td><td>style</td><td >Consecutive return, break, continue, goto or throw statements are unnecessary.</td></tr>
+       <tr><td colspan='5'><a href='1.html'>libcaja-private/caja-dnd.c</a></td></tr>
+       <tr class="nullPointerRedundantCheck"><td><a href="1.html#line-205">205</a></td><td>nullPointerRedundantCheck</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Either the condition 'p==0' is redundant or there is possible null pointer dereference: p.</td></tr>
+       <tr><td colspan='5'><a href='2.html'>libcaja-private/caja-file-operations.c</a></td></tr>
+       <tr class="shadowFunction"><td><a href="2.html#line-1327">1327</a></td><td>shadowFunction</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'confirm_trash' shadows outer function</td></tr>
+       <tr class="shadowFunction"><td><a href="2.html#line-1339">1339</a></td><td>shadowFunction</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'confirm_trash' shadows outer function</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-1386">1386</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-1410">1410</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-1452">1452</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-1494">1494</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-1630">1630</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-1663">1663</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-1696">1696</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-1773">1773</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-1916">1916</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-2662">2662</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-2703">2703</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-2781">2781</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-2885">2885</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="unreadVariable"><td><a href="2.html#line-2915">2915</a></td><td>unreadVariable</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'response' is assigned a value that is never used.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-2920">2920</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-2957">2957</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="unreadVariable"><td><a href="2.html#line-2978">2978</a></td><td>unreadVariable</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'response' is assigned a value that is never used.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-2983">2983</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-3516">3516</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-3657">3657</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-3702">3702</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-3744">3744</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-3833">3833</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-3874">3874</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="shadowFunction"><td><a href="2.html#line-3929">3929</a></td><td>shadowFunction</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'f' shadows outer function</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-4191">4191</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-4224">4224</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="shadowVar"><td><a href="2.html#line-4341">4341</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'is_merge' shadows outer variable</td></tr>
+       <tr class="shadowVar"><td><a href="2.html#line-4342">4342</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'response' shadows outer variable</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-4444">4444</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-4512">4512</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-4877">4877</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="shadowVar"><td><a href="2.html#line-4949">4949</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'response' shadows outer variable</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-5031">5031</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-5478">5478</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="shadowFunction"><td><a href="2.html#line-5843">5843</a></td><td>shadowFunction</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'f' shadows outer function</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-6239">6239</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-6563">6563</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-6604">6604</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-6639">6639</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="2.html#line-6674">6674</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr><td colspan='5'><a href='3.html'>libcaja-private/caja-file.c</a></td></tr>
+       <tr class="redundantAssignment"><td><a href="3.html#line-1197">1197</a></td><td>redundantAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'ret' is reassigned a value before the old one has been used.</td></tr>
+       <tr class="unusedAllocatedMemory"><td><a href="3.html#line-1736">1736</a></td><td>unusedAllocatedMemory</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'old_name' is allocated memory that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="3.html#line-3070">3070</a></td><td>unreadVariable</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'compare_result' is assigned a value that is never used.</td></tr>
+       <tr class="redundantCondition"><td><a href="3.html#line-4614">4614</a></td><td>redundantCondition</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Redundant condition: is_image. '!A || (A && B)' is equivalent to '!A || B'</td></tr>
+       <tr class="clarifyCalculation"><td><a href="3.html#line-6135">6135</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr class="clarifyCalculation"><td><a href="3.html#line-6136">6136</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr class="clarifyCalculation"><td><a href="3.html#line-6138">6138</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr class="clarifyCalculation"><td><a href="3.html#line-6140">6140</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr class="clarifyCalculation"><td><a href="3.html#line-6141">6141</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr class="clarifyCalculation"><td><a href="3.html#line-6143">6143</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr class="clarifyCalculation"><td><a href="3.html#line-6145">6145</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr class="clarifyCalculation"><td><a href="3.html#line-6146">6146</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr class="clarifyCalculation"><td><a href="3.html#line-6148">6148</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr><td colspan='5'><a href='4.html'>libcaja-private/caja-icon-canvas-item.c</a></td></tr>
+       <tr class="unreadVariable"><td><a href="4.html#line-1253">1253</a></td><td>unreadVariable</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'draw_frame' is assigned a value that is never used.</td></tr>
+       <tr><td colspan='5'><a href='5.html'>libcaja-private/caja-icon-container.c</a></td></tr>
+       <tr class="unreadVariable"><td><a href="5.html#line-1530">1530</a></td><td>unreadVariable</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'y' is assigned a value that is never used.</td></tr>
+       <tr class="duplicateBreak"><td><a href="5.html#line-3282">3282</a></td><td>duplicateBreak</td><td><a href='https://cwe.mitre.org/data/definitions/561.html'>561</a></td><td>style</td><td >Consecutive return, break, continue, goto or throw statements are unnecessary.</td></tr>
+       <tr class="unusedStructMember"><td><a href="5.html#line-4303">4303</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'BestNameMatch::name' is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="5.html#line-4304">4304</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'BestNameMatch::last_match_length' is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="5.html#line-6808">6808</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'ContextMenuParameters::container' is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="5.html#line-6809">6809</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'ContextMenuParameters::event' is never used.</td></tr>
+       <tr class="shadowVar"><td><a href="5.html#line-7779">7779</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'icon' shadows outer variable</td></tr>
+       <tr class="duplicateConditionalAssign"><td><a href="5.html#line-9323">9323</a></td><td>duplicateConditionalAssign</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >The statement 'if (container->details->font_size_table[i]!=font_size_table[i]) container->details->font_size_table[i]=font_size_table[i]' is logically equivalent to 'container->details->font_size_table[i]=font_size_table[i]'.</td></tr>
+       <tr><td colspan='5'><a href='6.html'>libcaja-private/caja-icon-dnd.c</a></td></tr>
+       <tr class="redundantAssignment"><td><a href="6.html#line-634">634</a></td><td>redundantAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'result' is reassigned a value before the old one has been used.</td></tr>
+       <tr><td colspan='5'><a href='7.html'>libcaja-private/caja-mime-application-chooser.c</a></td></tr>
+       <tr class="unusedStructMember"><td><a href="7.html#line-55">55</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member '_CajaMimeApplicationChooserDetails::entry' is never used.</td></tr>
+       <tr><td colspan='5'><a href='8.html'>libcaja-private/caja-search-directory-file.c</a></td></tr>
+       <tr class="unusedStructMember"><td><a href="8.html#line-44">44</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'CajaSearchDirectoryFileDetails::search_directory' is never used.</td></tr>
+       <tr><td colspan='5'><a href='9.html'>libcaja-private/caja-search-directory.c</a></td></tr>
+       <tr class="unusedStructMember"><td><a href="9.html#line-52">52</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'CajaSearchDirectoryDetails::file_hash' is never used.</td></tr>
+       <tr><td colspan='5'><a href='10.html'>libcaja-private/caja-search-engine.c</a></td></tr>
+       <tr class="unusedStructMember"><td><a href="10.html#line-35">35</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'CajaSearchEngineDetails::none' is never used.</td></tr>
+       <tr><td colspan='5'><a href='11.html'>libcaja-private/caja-thumbnails.c</a></td></tr>
+       <tr class="shadowVar"><td><a href="11.html#line-145">145</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'thumbnail_factory' shadows outer variable</td></tr>
+       <tr><td colspan='5'><a href='12.html'>libcaja-private/caja-tree-view-drag-dest.c</a></td></tr>
+       <tr class="unreadVariable"><td><a href="12.html#line-684">684</a></td><td>unreadVariable</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'action' is assigned a value that is never used.</td></tr>
+       <tr><td colspan='5'><a href='13.html'>libegg/eggsmclient-xsmp.c</a></td></tr>
+       <tr class="varFuncNullUB"><td><a href="13.html#line-277">277</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="13.html#line-285">285</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="uselessAssignmentPtrArg"><td><a href="13.html#line-340">340</a></td><td>uselessAssignmentPtrArg</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>warning</td><td >Assignment of function parameter has no effect outside the function. Did you forget dereferencing it?</td></tr>
+       <tr class="varFuncNullUB"><td><a href="13.html#line-787">787</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="13.html#line-790">790</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="13.html#line-919">919</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="13.html#line-927">927</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr class="varFuncNullUB"><td><a href="13.html#line-928">928</a></td><td>varFuncNullUB</td><td><a href='https://cwe.mitre.org/data/definitions/475.html'>475</a></td><td>portability</td><td >Passing NULL after the last typed argument to a variadic function leads to undefined behaviour.</td></tr>
+       <tr><td colspan='5'><a href='14.html'>libegg/eggsmclient.c</a></td></tr>
+       <tr class="knownConditionTrueFalse"><td><a href="14.html#line-356">356</a></td><td>knownConditionTrueFalse</td><td><a href='https://cwe.mitre.org/data/definitions/571.html'>571</a></td><td>style</td><td >Condition '!global_client' is always true</td></tr>
+       <tr><td colspan='5'><a href='15.html'>src/caja-application.c</a></td></tr>
+       <tr class="unreadVariable"><td><a href="15.html#line-2178">2178</a></td><td>unreadVariable</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'exit_with_last_window' is assigned a value that is never used.</td></tr>
+       <tr><td colspan='5'><a href='16.html'>src/caja-bookmarks-window.c</a></td></tr>
+       <tr class="shadowVar"><td><a href="16.html#line-1047">1047</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'path' shadows outer variable</td></tr>
+       <tr><td colspan='5'><a href='17.html'>src/caja-image-properties-page.c</a></td></tr>
+       <tr class="knownConditionTrueFalse"><td><a href="17.html#line-498">498</a></td><td>knownConditionTrueFalse</td><td><a href='https://cwe.mitre.org/data/definitions/570.html'>570</a></td><td>style</td><td >Condition 'exif_still_loading==1' is always false</td></tr>
+       <tr><td colspan='5'><a href='18.html'>src/caja-location-entry.c</a></td></tr>
+       <tr class="unusedStructMember"><td><a href="18.html#line-58">58</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'CajaLocationEntryDetails::label' is never used.</td></tr>
+       <tr><td colspan='5'><a href='19.html'>src/caja-main.c</a></td></tr>
+       <tr class="unusedVariable"><td><a href="19.html#line-226">226</a></td><td>unusedVariable</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Unused variable: application</td></tr>
+       <tr class="ConfigurationNotChecked"><td><a href="19.html#line-239">239</a></td><td>ConfigurationNotChecked</td><td></td><td>information</td><td >Skipping configuration 'HAVE_MALLOPT;M_MMAP_THRESHOLD' since the value of 'M_MMAP_THRESHOLD' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly.</td></tr>
+       <tr><td colspan='5'><a href='20.html'>src/caja-navigation-window.c</a></td></tr>
+       <tr class="redundantAssignment"><td><a href="20.html#line-611">611</a></td><td>redundantAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'handled' is reassigned a value before the old one has been used.</td></tr>
+       <tr><td colspan='5'><a href='21.html'>src/caja-pathbar.c</a></td></tr>
+       <tr class="nullPointerRedundantCheck"><td><a href="21.html#line-1590">1590</a></td><td>nullPointerRedundantCheck</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Either the condition 'if(button_data)' is redundant or there is possible null pointer dereference: button_data.</td></tr>
+       <tr class="nullPointerRedundantCheck"><td><a href="21.html#line-1596">1596</a></td><td>nullPointerRedundantCheck</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Either the condition 'if(button_data)' is redundant or there is possible null pointer dereference: button_data.</td></tr>
+       <tr><td colspan='5'><a href='22.html'>src/caja-places-sidebar.c</a></td></tr>
+       <tr class="redundantAssignment"><td><a href="22.html#line-523">523</a></td><td>redundantAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'last_iter' is reassigned a value before the old one has been used.</td></tr>
+       <tr class="redundantAssignment"><td><a href="22.html#line-885">885</a></td><td>redundantAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'last_iter' is reassigned a value before the old one has been used.</td></tr>
+       <tr class="clarifyCalculation"><td><a href="22.html#line-3000">3000</a></td><td>clarifyCalculation</td><td><a href='https://cwe.mitre.org/data/definitions/783.html'>783</a></td><td>style</td><td >Clarify calculation precedence for '&' and '?'.</td></tr>
+       <tr><td colspan='5'><a href='23.html'>src/caja-query-editor.c</a></td></tr>
+       <tr class="shadowVar"><td><a href="23.html#line-731">731</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'iter' shadows outer variable</td></tr>
+       <tr><td colspan='5'><a href='24.html'>src/caja-window.c</a></td></tr>
+       <tr class="unusedAllocatedMemory"><td><a href="24.html#line-1462">1462</a></td><td>unusedAllocatedMemory</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'copy' is allocated memory that is never used.</td></tr>
+       <tr class="shadowVar"><td><a href="24.html#line-1891">1891</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'slot' shadows outer variable</td></tr>
+       <tr class="shadowVar"><td><a href="24.html#line-1892">1892</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'l' shadows outer variable</td></tr>
+       <tr><td colspan='5'><a href='25.html'>src/file-manager/fm-desktop-icon-view.c</a></td></tr>
+       <tr class="shadowVar"><td><a href="25.html#line-644">644</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'desktop_directory' shadows outer variable</td></tr>
+       <tr><td colspan='5'><a href='26.html'>src/file-manager/fm-directory-view.c</a></td></tr>
+       <tr class="unreadVariable"><td><a href="26.html#line-6602">6602</a></td><td>unreadVariable</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >Variable 'file' is assigned a value that is never used.</td></tr>
+       <tr class="shadowVar"><td><a href="26.html#line-10722">10722</a></td><td>shadowVar</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >Local variable 'f' shadows outer variable</td></tr>
+       <tr><td colspan='5'><a href='27.html'>src/file-manager/fm-empty-view.c</a></td></tr>
+       <tr class="selfAssignment"><td><a href="27.html#line-408">408</a></td><td>selfAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>warning</td><td >Redundant assignment of 'fm_empty_view.id' to itself.</td></tr>
+       <tr class="selfAssignment"><td><a href="27.html#line-409">409</a></td><td>selfAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>warning</td><td >Redundant assignment of 'fm_empty_view.view_combo_label' to itself.</td></tr>
+       <tr class="selfAssignment"><td><a href="27.html#line-410">410</a></td><td>selfAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>warning</td><td >Redundant assignment of 'fm_empty_view.view_menu_label_with_mnemonic' to itself.</td></tr>
+       <tr class="selfAssignment"><td><a href="27.html#line-411">411</a></td><td>selfAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>warning</td><td >Redundant assignment of 'fm_empty_view.error_label' to itself.</td></tr>
+       <tr class="selfAssignment"><td><a href="27.html#line-412">412</a></td><td>selfAssignment</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>warning</td><td >Redundant assignment of 'fm_empty_view.display_location_label' to itself.</td></tr>
+       <tr><td colspan='5'><a href='28.html'>src/file-manager/fm-properties-window.c</a></td></tr>
+       <tr class="unusedStructMember"><td><a href="28.html#line-104">104</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member '_FMPropertiesWindowPrivate::name_row' is never used.</td></tr>
+       <tr><td colspan='5'><a href='33.html'>src/file-manager/fm-tree-model.c</a></td></tr>
+       <tr class="ctunullpointer"><td><a href="33.html#line-463">463</a></td><td>ctunullpointer</td><td><a href='https://cwe.mitre.org/data/definitions/476.html'>476</a></td><td>warning</td><td >Null pointer dereference: node</td></tr>
+       <tr><td colspan='5'><a href='29.html'>src/file-manager/fm-tree-view.c</a></td></tr>
+       <tr class="unusedStructMember"><td><a href="29.html#line-105">105</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'FMTreeViewDetails::popup_rename' is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="29.html#line-120">120</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'PrependURIParameters::uris' is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="29.html#line-121">121</a></td><td>unusedStructMember</td><td><a href='https://cwe.mitre.org/data/definitions/563.html'>563</a></td><td>style</td><td >struct member 'PrependURIParameters::view' is never used.</td></tr>
+       <tr><td colspan='5'><a href='30.html'>test/test-caja-wrap-table.c</a></td></tr>
+       <tr class="variableScope"><td><a href="30.html#line-15">15</a></td><td>variableScope</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >The scope of the variable 'stripped_name' can be reduced.</td></tr>
+       <tr><td colspan='5'><a href='31.html'>test/test-copy.c</a></td></tr>
+       <tr class="variableScope"><td><a href="31.html#line-43">43</a></td><td>variableScope</td><td><a href='https://cwe.mitre.org/data/definitions/398.html'>398</a></td><td>style</td><td >The scope of the variable 'source' can be reduced.</td></tr>
+       <tr><td colspan='5'><a href='32.html'>test/test-eel-labeled-image.c</a></td></tr>
+       <tr class="knownConditionTrueFalse"><td><a href="32.html#line-72">72</a></td><td>knownConditionTrueFalse</td><td><a href='https://cwe.mitre.org/data/definitions/570.html'>570</a></td><td>style</td><td >Condition 'labeled_image_window' is always false</td></tr>
+       </table>
+      </div>
+      <div id="footer">
+        <p>
+         Cppcheck 1.88 - a tool for static C/C++ code analysis</br>
+         </br>
+         Internet: <a href="http://cppcheck.net">http://cppcheck.net</a></br>
+         IRC: <a href="irc://irc.freenode.net/cppcheck">irc://irc.freenode.net/cppcheck</a></br>
+        <p>
+      </div>
+  </body>
+</html>
